@@ -1,0 +1,16 @@
+# compiled binaries
+*.exe
+*.out
+a.out
+*.class
+
+# CP Helper / metadata
+.cph/
+
+# IDE
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db

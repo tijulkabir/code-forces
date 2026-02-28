@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+static inline void fastio()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+}
+
+using ll = long long;
+using vi = vector<ll>;
+
+#define pb push_back
+#define all(x) begin(x), end(x)
+#define sz(x) (int)(x).size()
+
+void solve()
+{
+    ll n;
+    cin >> n;
+    vi v(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
+    }
+    bool si = false;
+    for (int i = 0; i < n; i++)
+    {
+        if (v[i] == 67)
+            si = true;
+    }
+
+    cout << (si ? "YES\n" : "NO\n");
+}
+
+int main()
+{
+    fastio();
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
