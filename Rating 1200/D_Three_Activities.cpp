@@ -40,36 +40,75 @@ void solve()
 {
     ll n;
     cin >> n;
-    vll va(n);
-    vll vb(n);
-    vll vc(n);
+
+    vll va(n), vb(n), vc(n);
     for (int i = 0; i < n; i++)
-    {
         cin >> va[i];
-    }
     for (int i = 0; i < n; i++)
-    {
         cin >> vb[i];
-    }
+    for (int i = 0; i < n; i++)
+        cin >> vc[i];
+
+    vi A(3, -1), B(3, -1), C(3, -1);
+
     for (int i = 0; i < n; i++)
     {
-        cin >> vc[i];
+        for (int j = 0; j < 3; j++)
+        {
+            if (A[j] == -1 || va[i] > va[A[j]])
+            {
+                for (int k = 2; k > j; k--)
+                    A[k] = A[k - 1];
+                A[j] = i;
+                break;
+            }
+        }
     }
-// got TLE in CF
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (B[j] == -1 || vb[i] > vb[B[j]])
+            {
+                for (int k = 2; k > j; k--)
+                    B[k] = B[k - 1];
+                B[j] = i;
+                break;
+            }
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (C[j] == -1 || vc[i] > vc[C[j]])
+            {
+                for (int k = 2; k > j; k--)
+                    C[k] = C[k - 1];
+                C[j] = i;
+                break;
+            }
+        }
+    }
+
     ll res = 0;
 
-    for (int i = 0; i < n; i++)
+    for (int x = 0; x < 3; x++)
     {
-        for (int j = 0; j < n; j++)
+        for (int y = 0; y < 3; y++)
         {
-            if (j == i)
-                continue;
-            for (int k = 0; k < n; k++)
+            for (int z = 0; z < 3; z++)
             {
-                if (k == i || k == j)
-                    continue;
+                int i = A[x];
+                int j = B[y];
+                int k = C[z];
 
-                res = max(res, va[i] + vb[j] + vc[k]);
+                if (i != j && i != k && j != k)
+                {
+                    res = max(res, va[i] + vb[j] + vc[k]);
+                }
             }
         }
     }
