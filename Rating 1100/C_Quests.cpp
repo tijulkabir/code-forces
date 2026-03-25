@@ -30,19 +30,28 @@ ll bs(ll l,ll r,F f){
     }
     return l;
 }
-//Unsolved due next day~
 void solve(){
     ll n,k;
-    cin >>n>>k;
-    vll a(n);
-    vll b(n);
-    for (int i = 0; i<n; i++)
-    {
-        cin >>a[i]>>b[i];
-    }
-       
-}
+    cin >> n >> k;
 
+    vll a(n), b(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++) cin >> b[i];
+
+    ll sumA = 0;
+    ll maxB = 0;
+    ll res = 0;
+
+    for (int i = 0; i < min(n, k); i++){
+        sumA += a[i];
+        maxB = max(maxB, b[i]);
+
+        ll total = sumA + (k - i - 1) * maxB;
+        res = max(res, total);
+    }
+
+    cout << res << '\n';
+}
 int main(){
     fastio();
     int t=1;
