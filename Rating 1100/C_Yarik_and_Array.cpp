@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-static inline void fastio(){
+static inline void fastio()
+{
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 }
@@ -12,8 +13,8 @@ using ull = unsigned long long;
 
 using vi = vector<int>;
 using vll = vector<ll>;
-using pii = pair<int,int>;
-using pll = pair<ll,ll>;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
 
 #define pb push_back
 #define eb emplace_back
@@ -21,31 +22,55 @@ using pll = pair<ll,ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 #define sz(x) int((x).size())
 
-template<class F>
-ll bs(ll l,ll r,F f){
-    while(l<r){
-        ll m=l+(r-l)/2;
-        if(f(m)) r=m;
-        else l=m+1;
+template <class F>
+ll bs(ll l, ll r, F f)
+{
+    while (l < r)
+    {
+        ll m = l + (r - l) / 2;
+        if (f(m))
+            r = m;
+        else
+            l = m + 1;
     }
     return l;
 }
-//unsolved 
-void solve(){
+void solve()
+{
     ll n;
-    cin >>n;
+    cin >> n;
     vll vi(n);
     for (int i = 0; i < n; i++)
     {
-        cin>>vi[i];
+        cin >> vi[i];
     }
-        
+
+    ll res = vi[0];
+    ll sum = vi[0];
+    ll mn = min(0ll, vi[0]);
+
+    for (int i = 1; i < n; ++i)
+    {
+        if ((vi[i] & 1) == (vi[i - 1] & 1))
+        {
+            sum = 0;
+            mn = 0;
+        }
+
+        sum += vi[i];
+        res = max(res, sum - mn);
+        mn = min(mn, sum);
+    }
+
+    cout << res << endl;
 }
 
-int main(){
+int main()
+{
     fastio();
-    int t=1;
-    cin>>t;
-    while(t--) solve();
+    int t = 1;
+    cin >> t;
+    while (t--)
+        solve();
     return 0;
 }
